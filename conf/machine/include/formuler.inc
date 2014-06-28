@@ -7,10 +7,6 @@ IMAGE_CMD_ubi_prepend = " \
 	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
 	"
 
-IMAGE_INSTALL = " \
-	enigma2-remote \
-	"
-
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
 	formuler-dvb-modules-${MACHINE} \
 	"
