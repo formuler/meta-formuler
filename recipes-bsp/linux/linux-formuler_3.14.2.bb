@@ -4,12 +4,14 @@ LICENSE = "GPLv2"
 
 KERNEL_RELEASE = "3.14.2"
 
+COMPATIBLE_MACHINE = "formuler[1,3]"
+
 SRC_URI[md5sum] = "7276fcda85e4594c993ea6192cd7df0f"
 SRC_URI[sha256sum] = "72236f0ff51f42496d5d7bae372f4ddc686bc0eb433aa8b6295bbda0558d3e63"
 
 LIC_FILES_CHKSUM = "file://${WORKDIR}/linux-${PV}/COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-MACHINE_KERNEL_PR_append = ".0"
+MACHINE_KERNEL_PR_append = ".1"
 
 # By default, kernel.bbclass modifies package names to allow multiple kernels
 # to be installed in parallel. We revert this change and rprovide the versioned
@@ -32,6 +34,7 @@ SRC_URI += "http://downloads.formuler.info/linux-${PV}.tar.gz \
 	file://it913x-switch-off-PID-filter-by-default.patch \
 	file://mxl5007t-add-no_probe-and-no_reset-parameters.patch \
 	file://tda18271-advertise-supported-delsys.patch \
+	file://timedate.patch \
 	"
 
 S = "${WORKDIR}/linux-${PV}"
