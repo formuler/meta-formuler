@@ -7,6 +7,21 @@ IMAGE_CMD_ubi_prepend = " \
 	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
 	"
 
+IMAGE_CMD_tar_prepend = " \
+	rm -Rf ${DEPLOY_DIR_IMAGE}/boot; \
+	mkdir ${DEPLOY_DIR_IMAGE}/boot; \
+	gzip -9c ${DEPLOY_DIR_IMAGE}/vmlinux-${MACHINE}.bin > ${DEPLOY_DIR_IMAGE}/boot/vmlinux.gz; \
+	echo "LABEL=sdcard" > ${DEPLOY_DIR_IMAGE}/boot/boot.cfg; \
+	echo "KERNEL=/boot/vmlinux.gz" >> ${DEPLOY_DIR_IMAGE}/boot/boot.cfg; \
+	echo "PRIORITY=10" >> ${DEPLOY_DIR_IMAGE}/boot/boot.cfg; \
+	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
+	"
+
+IMAGE_CMD_tar_append = "; \
+	tar -rf ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.tar -C ${DEPLOY_DIR_IMAGE} boot; \
+	rm -Rf ${DEPLOY_DIR_IMAGE}/boot; \
+	"
+
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
 	formuler-dvb-modules-${MACHINE} \
 	"
