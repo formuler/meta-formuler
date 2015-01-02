@@ -23,6 +23,7 @@ RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
 
 SRC_URI += "http://downloads.formuler.info/linux-${PV}.tar.gz \
 	file://defconfig \
+	file://fix-proc-cputype.patch \
 	file://add-rt2x00-wifi-devices.patch \
 	file://add-rtl8192cu-wifi-devices.patch \
 	file://add-dmx-source-timecode.patch \
