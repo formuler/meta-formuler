@@ -26,6 +26,7 @@ SRC_URI += "http://downloads.formuler.info/linux-${PV}.tar.gz \
 	file://formuler_partition_layout.patch \
 	file://sdio-pinmux.patch \
 	file://0001-bcmgenet.patch \
+	file://kernel-gcc6.patch \
 	"
 
 inherit kernel machine_kernel_pr
@@ -35,6 +36,7 @@ S = "${WORKDIR}/linux-${PV}"
 export OS = "Linux"
 KERNEL_OBJECT_SUFFIX = "ko"
 KERNEL_OUTPUT = "vmlinux"
+KERNEL_OUTPUT_DIR = "."
 KERNEL_IMAGETYPE = "vmlinux"
 KERNEL_IMAGEDEST = "/tmp"
 
