@@ -3,7 +3,7 @@ SECTION = "kernel"
 LICENSE = "GPLv2"
 
 KERNEL_RELEASE = "4.0.1"
-COMPATIBLE_MACHINE = "formuler[1,2,3,4]"
+COMPATIBLE_MACHINE = "formuler+"
 MACHINE_KERNEL_PR_append = ".1"
 
 SRC_URI[md5sum] = "c274792d088cd7bbfe7fe5a76bd798d8"
