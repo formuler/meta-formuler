@@ -3,6 +3,14 @@ MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc"
 
 MACHINE_KERNEL_PR = "r1"
 
+BRAND_OEM = "formuler"
+MACHINE_BRAND = "Formuler"
+
+MTD_KERNEL = "mtd1"
+MTD_ROOTFS = "mtd2"
+KERNEL_FILE = "kernel.bin"
+ROOTFS_FILE = "rootfs.bin"
+
 IMAGE_CMD_ubi_prepend = " \
 	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
 	"
@@ -37,7 +45,7 @@ MACHINE_EXTRA_RRECOMMENDS = " \
 	ntfs-3g \
 	"
 
-DVBMEDIASINK_CONFIG = "--with-wma --with-wmv --with-pcm --with-dts --with-eac3"
+DVBMEDIASINK_CONFIG = "--with-wma --with-wmv --with-pcm --with-dts --with-eac3 --with-h265 --with-vb6 --with-vb8 --with-spark"
 
 TARGET_ARCH = "mipsel"
 DEFAULTTUNE ?= "mips32el"
