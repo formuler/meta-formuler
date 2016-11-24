@@ -1,7 +1,10 @@
 # We know about rtc
 MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc" 
 
-MACHINE_KERNEL_PR = "r2"
+MACHINE_KERNEL_PR = "r1"
+
+BRAND_OEM = "formuler"
+MACHINE_BRAND = "Formuler"
 
 MTD_KERNEL = "mtd1"
 MTD_ROOTFS = "mtd2"
@@ -47,7 +50,7 @@ DVBMEDIASINK_CONFIG = "--with-wma --with-wmv --with-pcm --with-dts --with-eac3"
 TARGET_ARCH = "mipsel"
 DEFAULTTUNE ?= "mips32el"
 
-PREFERRED_PROVIDER_virtual/kernel = "linux-formuler"
+PREFERRED_PROVIDER_virtual/kernel = "linux-formuler-next"
 
 KERNEL_IMAGETYPE = "vmlinux"
 KERNEL_OUTPUT = "${KERNEL_IMAGETYPE}"

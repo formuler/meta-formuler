@@ -1,8 +1,6 @@
 KV = "4.7.6"
 SRCDATE = "20161005"
 
-SRC_URI = "http://downloads.formuler.info/${MACHINE}-drivers-${KV}-${SRCDATE}.zip"
-
 require formuler-dvb-modules.inc
 
 SRC_URI[md5sum] = "388e1ef72465c7059d20ed90e649296a"
