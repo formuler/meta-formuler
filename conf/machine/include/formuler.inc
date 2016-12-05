@@ -1,31 +1,7 @@
 # We know about rtc
 MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc" 
 
-MACHINE_KERNEL_PR = "r2"
-
-MTD_KERNEL = "mtd1"
-MTD_ROOTFS = "mtd2"
-KERNEL_FILE = "kernel.bin"
-ROOTFS_FILE = "rootfs.bin"
-
-IMAGE_CMD_ubi_prepend = " \
-	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
-	"
-
-IMAGE_CMD_tar_prepend = " \
-	rm -Rf ${DEPLOY_DIR_IMAGE}/boot; \
-	mkdir ${DEPLOY_DIR_IMAGE}/boot; \
-	gzip -9c ${DEPLOY_DIR_IMAGE}/vmlinux-${MACHINE}.bin > ${DEPLOY_DIR_IMAGE}/boot/vmlinux.gz; \
-	echo "LABEL=sdcard" > ${DEPLOY_DIR_IMAGE}/boot/boot.cfg; \
-	echo "KERNEL=/boot/vmlinux.gz" >> ${DEPLOY_DIR_IMAGE}/boot/boot.cfg; \
-	echo "PRIORITY=10" >> ${DEPLOY_DIR_IMAGE}/boot/boot.cfg; \
-	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
-	"
-
-IMAGE_CMD_tar_append = "; \
-	tar -rf ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.tar -C ${DEPLOY_DIR_IMAGE} boot; \
-	rm -Rf ${DEPLOY_DIR_IMAGE}/boot; \
-	"
+MACHINE_KERNEL_PR = "r3"
 
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
 	formuler-dvb-modules-${MACHINE} \
@@ -58,21 +34,26 @@ IMAGE_FSTYPES ?= "ubi"
 UBI_VOLNAME = "rootfs"
 
 IMAGEDIR ?= "${MACHINE}"
+IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
 
 IMAGE_CMD_ubi_append = " \
-	mkdir -p ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}; \
-	cp ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ubi ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/rootfs.bin; \
-	gzip -9c ${DEPLOY_DIR_IMAGE}/vmlinux-${MACHINE}.bin > ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/kernel.bin; \
-	echo "${IMAGEVERSION}" > ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/imageversion; \
-	echo "rename this file to 'force' to force an update without confirmation" > ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/noforce; \
-	cd ${DEPLOY_DIR_IMAGE}; \
+	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}; \
+	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.ubi ${IMGDEPLOYDIR}/${IMAGEDIR}/rootfs.bin; \
+	gzip -9c ${DEPLOY_DIR_IMAGE}/vmlinux-${MACHINE}.bin > ${IMGDEPLOYDIR}/${IMAGEDIR}/kernel.bin; \
+	echo "${IMAGEVERSION}" > ${IMGDEPLOYDIR}/${IMAGEDIR}/imageversion; \
+	echo "rename this file to 'force' to force an update without confirmation" > ${IMGDEPLOYDIR}/${IMAGEDIR}/noforce; \
+	cd ${IMGDEPLOYDIR}; \
 	zip ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_usb.zip ${IMAGEDIR}/*; \
 	rm -Rf ${IMAGEDIR}; \
 	"
 
-MACHINE_FEATURES += "alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
+IMAGE_CMD_ubi_prepend = " \
+	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
+	"
+
+MACHINE_FEATURES += "alsa usbhost wlan 3dtv switchoff osdposition hdmicec ci"
 
 require conf/machine/include/tune-mips32.inc
 require conf/machine/include/formuler-wifi.inc
