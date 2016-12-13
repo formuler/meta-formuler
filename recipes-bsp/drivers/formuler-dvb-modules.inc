@@ -6,6 +6,8 @@ LICENSE = "CLOSED"
 PV = "${KV}+${SRCDATE}"
 PR = "r0"
 
+SRC_URI = "http://downloads.formuler-support.tv/${MACHINE}-drivers-${KV}-${SRCDATE}.zip"
+
 S = "${WORKDIR}"
 
 INHIBIT_PACKAGE_STRIP = "1"
