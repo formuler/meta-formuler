@@ -6,8 +6,8 @@ KERNEL_RELEASE = "4.7.6"
 COMPATIBLE_MACHINE = "^(formuler1|formuler3|formuler4)$"
 MACHINE_KERNEL_PR_append = ".0"
 
-SRC_URI[md5sum] = "7439fa7d85a45a0d77568bac5d075a95"
-SRC_URI[sha256sum] = "6dcb7dc4fb162005fe79bf0ae560c6e3054c440c9adbe409d0c9ce42afe7e2ed"
+SRC_URI[md5sum] = "7704898cdd7284bdf680b73162fdeca4"
+SRC_URI[sha256sum] = "8821d8bde5014cfd0999dc62d1eb655bb47a2f4f6694d565b51037d3d6875098"
 
 LIC_FILES_CHKSUM = "file://${WORKDIR}/linux-${PV}/COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
